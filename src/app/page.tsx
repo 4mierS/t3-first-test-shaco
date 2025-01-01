@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { LatestPost } from "~/app/_components/post";
+import { AllPosts } from "~/app/_components/allPosts";
 import { getServerAuthSession } from "~/server/auth";
 import { api, HydrateClient } from "~/trpc/server";
 
@@ -58,8 +59,12 @@ export default async function Home() {
               </Link>
             </div>
           </div>
-
-          {session?.user && <LatestPost />}
+          {session?.user && (
+            <>
+              <LatestPost />
+              <AllPosts />
+            </>
+          )}
         </div>
       </main>
     </HydrateClient>
