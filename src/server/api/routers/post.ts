@@ -40,4 +40,8 @@ export const postRouter = createTRPCRouter({
   getAll: publicProcedure.query(async ({ ctx }) => {
     return ctx.db.query.posts.findMany();
   }),
+
+  deletePost: protectedProcedure.mutation((input) => {
+    return ctx.db.delete(posts).where({ id: input.id });
+  }),
 });
